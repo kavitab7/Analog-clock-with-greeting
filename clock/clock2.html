@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        .greetings {
+            font-size: 50px;
+            margin: 13px;
+            color: white;
+        }
+
+        #x {
+            height: 30px;
+            width: 30px;
+            margin: 30px;
+        }
+
+        .cl {
+            height: 80vh;
+        }
+
+        .bg {
+            position: relative;
+            margin: auto;
+            background: url(cl.png);
+            height: 30vw;
+            width: 30vw;
+            background-size: 100%;
+        }
+
+        #hou,
+        #min,
+        #sec {
+            position: absolute;
+            background-color: black;
+            border-radius: 3px;
+            transform-origin: bottom;
+        }
+
+        #hou {
+            width: 1.6%;
+            height: 21.9%;
+            top: 28%;
+            left: 49.3%;
+        }
+
+        #min {
+            width: 1.2%;
+            height: 25.9%;
+            top: 24%;
+            left: 49.4%;
+        }
+
+        #sec {
+            width: 0.6%;
+            height: 30.9%;
+            top: 19.1%;
+            left: 49.5%;
+        }
+
+        .foot {
+            text-align: center;
+        }
+
+        .foot a {
+            color: black;
+            text-decoration: none;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(90deg, #e52e71, #ff8a00);
+
+        }
+
+        .slider::before {
+            position: absolute;
+            content: "";
+            left: 30%;
+            top: 20%;
+            width: 450px;
+            height: 450px;
+            background: #555857;
+            border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
+            will-change: border-radius, transform, opacity;
+            animation: sliderShape 5s linear infinite;
+            display: block;
+            z-index: -1;
+            -webkit-animation: sliderShape 5s linear infinite;
+        }
+
+        @keyframes sliderShape {
+
+            0%,
+            100% {
+                border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+                transform: translate3d(0, 0, 0) rotateZ(0.01deg);
+            }
+
+            34% {
+                border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+                transform: translate3d(0, 5px, 0) rotateZ(0.01deg);
+            }
+
+            50% {
+                transform: translate3d(0, 0, 0) rotateZ(0.01deg);
+            }
+
+            67% {
+                border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+                transform: translate3d(0, -3px, 0) rotateZ(0.01deg);
+            }
+        }
+
+        @media only screen and (max-width:750px) {
+            .greetings {
+                font-size: 30px;
+            }
+
+            #x {
+                height: 59px;
+            }
+
+            .cl {
+                height: 70vh;
+            }
+
+            .slider::before {
+                width: 283px;
+                height: 291px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <div id="x"></div>
+        <div class="greetings" id="greetings"></div>
+        <section class="cl">
+
+            <div class="bg" id="bg">
+                <div class="hou" id="hou"></div>
+                <div class="min" id="min"></div>
+                <div class="sec" id="sec"></div>
+            </div>
+        </section>
+        <footer class="foot">
+            Icons use from-<a href="https://www.flaticon.com">flaticon</a>
+            . All rights are reserved.
+        </footer>
+    </div>
+</body>
+<script>
+    setInterval(() => {
+        d = new Date();
+        htime = d.getHours();
+        mtime = d.getMinutes();
+        stime = d.getSeconds();
+        hrot = 30 * htime + mtime / 2;
+        mrot = 6 * mtime;
+        srot = 6 * stime;
+
+        hou.style.transform = `rotate(${hrot}deg)`;
+        min.style.transform = `rotate(${mrot}deg)`;
+        sec.style.transform = `rotate(${srot}deg)`;
+    }
+    )
+    var d = new Date();
+    var time = d.getHours();
+
+    if (time < 12) {
+        greet = "Good morning!!";
+        var img = document.createElement("img");
+
+        img.src = "sun.png";
+        var src = document.getElementById("x");
+
+        src.appendChild(img);
+    }
+
+    if (12 < time && time < 17) {
+        greet = "Good afternoon!!";
+        var img = document.createElement("img");
+
+        img.src = "afternoon.png";
+        var src = document.getElementById("x");
+        src.appendChild(img);
+    }
+    if (16 < time && time < 19) {
+        greet = "Good evening!!";
+        var img = document.createElement("img");
+
+        img.src = "afternoon(1).png";
+        var src = document.getElementById("x");
+        src.appendChild(img);
+    }
+    if (time > 19) {
+        greet = "Good night!!";
+        //change img
+        var img = document.createElement("img");
+        img.src = "cloudy.png";
+        var src = document.getElementById("x");
+        src.appendChild(img);
+
+
+    }
+    document.getElementById('greetings').innerHTML = greet;
+    img.style.height = '100px';
+    img.style.width = '100px';
+
+
+</script>
+
+</html>
